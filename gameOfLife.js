@@ -19,9 +19,10 @@ function game() {
 game();
 */
 
-let contador = 0;
+let contador;
 
 function chequeandoVecinos() {
+  contador = 0;
   for (let x = 0; x < boardGame.length; x++) {
     for (let y = 0; y < boardGame[x].length; y++) {
       if (boardGame[x][y] === 1) {
@@ -52,21 +53,6 @@ function chequeandoVecinos() {
       }
     }
   }
-  console.log(vecinos);
-  if (contador < 2) {
-    clean();
-    console.log(vecinos);
-  }
+  console.log(boardGame);
 }
 chequeandoVecinos();
-
-function clean() {
-  contador = 0;
-  for (let x = 0; x < vecinos.length; x++) {
-    for (let y = 0; y < vecinos[x].length; y++) {
-      if (vecinos[x][y] === 1) {
-        vecinos[x][y] = 0;
-      }
-    }
-  }
-}
