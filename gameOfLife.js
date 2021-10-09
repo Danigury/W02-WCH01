@@ -1,427 +1,59 @@
-const boardGame = [
-  [0, 0, 0, 0, 0],
-  [0, 0, 1, 0, 0],
-  [0, 0, 1, 0, 0],
-  [0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0],
-];
+const dimensionesTablero = 5;
+const tableroOriginal = Array(dimensionesTablero)
+  .fill(0)
+  .map(() => Array(dimensionesTablero).fill(0));
+tableroOriginal[1][2] = 1;
+tableroOriginal[2][2] = 1;
+tableroOriginal[3][2] = 1;
+function juego(tablero, count) {
+  const creadorTablero = Array(dimensionesTablero)
+    .fill(0)
+    .map(() => Array(dimensionesTablero).fill(0));
 
-let contadorVivos;
-let contadorMuertos;
+  if (count === 0) {
+    return;
+  }
 
-function chequeandoVecinos(matriz) {
-  contadorVivos = 0;
-  for (let x = 0; x < boardGame.length; x++) {
-    for (let y = 0; y < boardGame[x].length; y++) {
-      if (boardGame[0][0] === 1) {
-        esquinaIzquierdaSuperior();
+  for (let x = 0; x < tablero.length; x++) {
+    for (let y = 0; y < tablero[x].length; y++) {
+      let contador = 0;
+      if (tablero[x + 1] !== undefined) {
+        if (tablero[x + 1][y] === 1) contador++;
+        if (tablero[x + 1][y - 1] === 1) contador++;
+        if (tablero[x + 1][y + 1] === 1) contador++;
+      }
+      if (tablero[x][y - 1] === 1) contador++;
+      if (tablero[x][y + 1] === 1) contador++;
+      if (tablero[x - 1] !== undefined) {
+        if (tablero[x - 1][y] === 1) contador++;
+        if (tablero[x - 1][y - 1] === 1) contador++;
+        if (tablero[x - 1][y + 1] === 1) contador++;
       }
 
-      if (boardGame[0][4] === 1) {
-        esquinaDerechaSuperior();
-      }
-
-      if (boardGame[4][4] === 1) {
-        esquinaDerechaInferior();
-      }
-
-      if (boardGame[4][0] === 1) {
-        esquinaIzquierdaInferior();
-      }
-
-      if (
-        boardGame[0][1] === 1 ||
-        boardGame[0][2] === 1 ||
-        boardGame[0][3] === 1
-      ) {
-        bordeSuperior();
-      }
-
-      if (
-        boardGame[1][4] === 1 ||
-        boardGame[2][4] === 1 ||
-        boardGame[3][4] === 1
-      ) {
-        bordeDerecho();
-      }
-
-      if (
-        boardGame[4][1] === 1 ||
-        boardGame[4][2] === 1 ||
-        boardGame[4][3] === 1
-      ) {
-        bordeInferior();
-      }
-
-      if (
-        boardGame[1][0] === 1 ||
-        boardGame[2][0] === 1 ||
-        boardGame[3][0] === 1
-      ) {
-        bordeIzquierdo();
-      }
-
-      centro();
+      creadorTablero[x][y] = creandoTablero(tablero[x][y], contador);
     }
   }
+  console.log(creadorTablero);
+  juego(creadorTablero, count - 1);
+}
+function creandoTablero(vivos, vecinos) {
+  if (vivos === 1) {
+    if (vecinos < 2) {
+      return 0;
+    }
+    if (vecinos > 3) {
+      return 0;
+    }
+    if (vecinos === 2 || vecinos === 3) {
+      return 1;
+    }
+  }
+  if (vivos === 0) {
+    if (vecinos === 3) {
+      return 1;
+    }
+  }
+  return 0;
 }
 
-function centro() {
-  if (boardGame[x - 1][y - 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x - 1][y] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x - 1][y + 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x][y + 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x + 1][y + 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x + 1][y] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x + 1][y - 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x][y - 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x - 1][y - 1] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x - 1][y] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x - 1][y + 1] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x][y + 1] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x + 1][y + 1] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x + 1][y] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x + 1][y - 1] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x][y - 1] === 0) {
-    contadorMuertos++;
-  }
-}
-
-function esquinaIzquierdaSuperior() {
-  if (boardGame[x][y + 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x + 1][y + 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x + 1][y] === 1) {
-    contadorVivos++;
-  }
-  if (boardGame[x][y + 1] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x + 1][y + 1] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x + 1][y] === 0) {
-    contadorMuertos++;
-  }
-}
-
-function esquinaIzquierdaInferior() {
-  if (boardGame[x - 1][y] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x - 1][y + 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x][y + 1] === 1) {
-    contadorVivos++;
-  }
-  if (boardGame[x - 1][y] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x - 1][y + 1] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x][y + 1] === 0) {
-    contadorMuertos++;
-  }
-}
-
-function esquinaDerechaSuperior() {
-  if (boardGame[x][y - 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x + 1][y - 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x + 1][y] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x][y - 1] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x + 1][y - 1] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x + 1][y] === 0) {
-    contadorMuertos++;
-  }
-}
-
-function esquinaDerechaInferior() {
-  if (boardGame[x - 1][y] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x - 1][y - 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x][y - 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x - 1][y] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x - 1][y - 1] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x][y - 1] === 0) {
-    contadorMuertos++;
-  }
-}
-
-function bordeSuperior() {
-  if (boardGame[x][y - 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x + 1][y - 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x + 1][y] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x + 1][y + 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x][y + 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x][y - 1] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x + 1][y - 1] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x + 1][y] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x + 1][y + 1] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x][y + 1] === 0) {
-    contadorMuertos++;
-  }
-}
-
-function bordeDerecho() {
-  if (boardGame[x - 1][y] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x - 1][y + 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x][y + 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x + 1][y + 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x + 1][y] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x - 1][y] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x - 1][y + 1] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x][y + 1] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x + 1][y + 1] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x + 1][y] === 0) {
-    contadorMuertos++;
-  }
-}
-
-function bordeInferior() {
-  if (boardGame[x][y - 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x + 1][y - 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x + 1][y] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x + 1][y + 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x][y + 1] === 1) {
-    contadorVivos++;
-  }
-  if (boardGame[x][y - 1] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x + 1][y - 1] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x + 1][y] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x + 1][y + 1] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x][y + 1] === 0) {
-    contadorMuertos++;
-  }
-}
-
-function bordeIzquierdo() {
-  if (boardGame[x - 1][y] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x - 1][y + 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x][y + 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x + 1][y + 1] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x + 1][y] === 1) {
-    contadorVivos++;
-  }
-
-  if (boardGame[x - 1][y] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x - 1][y + 1] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x][y + 1] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x + 1][y + 1] === 0) {
-    contadorMuertos++;
-  }
-
-  if (boardGame[x + 1][y] === 0) {
-    contadorMuertos++;
-  }
-}
-
-/* if (boardGame[x - 1][y - 1] === 1) {
-          contadorVivos++;
-        }
-        if (boardGame[x - 1][y] === 1) {
-          contadorVivos++;
-        }
-        if (boardGame[x - 1][y + 1] === 1) {
-          contadorVivos++;
-        }
-        if (boardGame[x][y - 1] === 1) {
-          contadorVivos++;
-        }
-        if (boardGame[x][y + 1] === 1) {
-          contadorVivos++;
-        }
-        if (boardGame[x + 1][y - 1] === 1) {
-          contadorVivos++;
-        }
-        if (boardGame[x + 1][y] === 1) {
-          contadorVivos++;
-        }
-        if (boardGame[x + 1][y + 1] === 1) {
-          contadorVivos++;
-        } */
+juego(tableroOriginal, 5);
