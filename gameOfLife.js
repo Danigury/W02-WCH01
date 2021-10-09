@@ -7,7 +7,7 @@ tableroOriginal[2][2] = 1;
 tableroOriginal[3][2] = 1;
 
 function juego(tablero, count) {
-  const creadorTablero = Array(dimensionesTablero)
+  const tableroNuevo = Array(dimensionesTablero)
     .fill(0)
     .map(() => Array(dimensionesTablero).fill(0));
 
@@ -18,24 +18,24 @@ function juego(tablero, count) {
   for (let x = 0; x < tablero.length; x++) {
     for (let y = 0; y < tablero[x].length; y++) {
       let contador = 0;
-      if (tablero[x + 1] !== undefined) {
-        if (tablero[x + 1][y] === 1) contador++;
-        if (tablero[x + 1][y - 1] === 1) contador++;
-        if (tablero[x + 1][y + 1] === 1) contador++;
-      }
-      if (tablero[x][y - 1] === 1) contador++;
-      if (tablero[x][y + 1] === 1) contador++;
       if (tablero[x - 1] !== undefined) {
         if (tablero[x - 1][y] === 1) contador++;
         if (tablero[x - 1][y - 1] === 1) contador++;
         if (tablero[x - 1][y + 1] === 1) contador++;
       }
+      if (tablero[x][y - 1] === 1) contador++;
+      if (tablero[x][y + 1] === 1) contador++;
+      if (tablero[x + 1] !== undefined) {
+        if (tablero[x + 1][y] === 1) contador++;
+        if (tablero[x + 1][y - 1] === 1) contador++;
+        if (tablero[x + 1][y + 1] === 1) contador++;
+      }
 
-      creadorTablero[x][y] = creandoTablero(tablero[x][y], contador);
+      tableroNuevo[x][y] = creandoTablero(tablero[x][y], contador);
     }
   }
-  console.log(creadorTablero);
-  juego(creadorTablero, count - 1);
+  console.log(tableroNuevo);
+  juego(tableroNuevo, count - 1);
   // return creadorTablero;
 }
 function creandoTablero(vivos, vecinos) {
