@@ -35,7 +35,8 @@ function juego(tablero, count) {
     }
   }
   console.log(creadorTablero);
-  juego(creadorTablero, count - 1);
+  // juego(creadorTablero, count - 1);
+  return creadorTablero;
 }
 function creandoTablero(vivos, vecinos) {
   if (vivos === 1) {
