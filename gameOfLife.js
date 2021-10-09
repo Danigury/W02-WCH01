@@ -5,6 +5,7 @@ const tableroOriginal = Array(dimensionesTablero)
 tableroOriginal[1][2] = 1;
 tableroOriginal[2][2] = 1;
 tableroOriginal[3][2] = 1;
+
 function juego(tablero, count) {
   const creadorTablero = Array(dimensionesTablero)
     .fill(0)
@@ -57,3 +58,5 @@ function creandoTablero(vivos, vecinos) {
 }
 
 juego(tableroOriginal, 5);
+
+module.exports = { juego, creandoTablero };
