@@ -1,16 +1,83 @@
-const boardGame = [
-  [0, 0, 0, 0, 0],
-  [0, 0, 1, 0, 0],
-  [0, 0, 1, 0, 0],
-  [0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0],
-];
 
-let contadorVivos;
-let contadorMuertos;
 
+function Game(tablero) {
+  const tablero2 = Array(dimensiones)
+    .fill(0)
+    .map(() => Array(dimensiones).fill(0));
+
+
+ for (let x = 0; x < dimensiones; x++) {
+    for (let y = 0; y < dimensiones; y++) {
+      let contador = 0;
+      if (x === 0) {
+        if (y === 0) {
+          contador += tablero[0][1];
+          contador += tablero[1][0];
+          contador += tablero[1][1];
+          auxTable[x][y] = paint(tablero[x][y], contador);
+        } else if (y > 0 && y < dimensiones - 1) {
+          contador += tablero[0][y + 1];
+          contador += tablero[0][y - 1];
+          contador += tablero[1][y];
+          contador += tablero[1][y + 1];
+          contador += tablero[1][y - 1];
+          auxTable[x][y] = paint(tablero[x][y], contador);
+        } else if (y === dimensiones - 1) {
+          contador += tablero[0][dimensiones - 2];
+          contador += tablero[1][dimensiones - 1];
+          contador += tablero[1][dimensiones - 2];
+          auxTable[x][y] = paint(tablero[x][y], contador);
+        }
+      } else if (x === dimensiones - 1) {
+        if (y === 0) {
+          contador += tablero[dimensiones - 1][1];
+          contador += tablero[dimensiones - 2][0];
+          contador += tablero[dimensiones - 2][1];
+          auxTable[x][y] = paint(tablero[x][y], contador);
+        } else if (y > 0 && y < dimensiones - 1) {
+          contador += tablero[dimensiones - 1][y + 1];
+          contador += tablero[dimensiones - 1][y - 1];
+          contador += tablero[dimensiones - 2][y];
+          contador += tablero[dimensiones - 2][y + 1];
+          contador += tablero[dimensiones - 2][y - 1];
+          auxTable[x][y] = paint(tablero[x][y], contador);
+        } else if (y === dimensiones - 1) {
+          contador += tablero[dimensiones - 1][dimensiones - 2];
+          contador += tablero[dimensiones - 2][dimensiones - 1];
+          contador += tablero[dimensiones - 2][dimensiones - 2];
+          auxTable[x][y] = paint(tablero[x][y], contador);
+        }
+      } else if (y === 0) {
+        contador += tablero[x - 1][0];
+        contador += tablero[x + 1][0];
+        contador += tablero[x - 1][1];
+        contador += tablero[x][1];
+        contador += tablero[x + 1][1];
+        auxTable[x][y] = paint(tablero[x][y], contador);
+      } else if (y === dimensiones - 1) {
+        contador += tablero[x - 1][dimensiones - 1];
+        contador += tablero[x + 1][dimensiones - 1];
+        contador += tablero[x - 1][dimensiones - 2];
+        contador += tablero[x][dimensiones - 2];
+        contador += tablero[x + 1][dimensiones - 2];
+        auxTable[x][y] = paint(tablero[x][y], contador);
+      } else {
+        contador += tablero[x - 1][y - 1];
+        contador += tablero[x - 1][y];
+        contador += tablero[x - 1][y + 1];
+        contador += tablero[x][y - 1];
+        contador += tablero[x][y + 1];
+        contador += tablero[x + 1][y - 1];
+        contador += tablero[x + 1][y];
+        contador += tablero[x + 1][y + 1];
+        auxTable[x][y] = paint(tablero[x][y], contador);
+      }
+    }
+  }
+/*
 function chequeandoVecinos(matriz) {
-  contadorVivos = 0;
+  const contadorVivos = 0;
+  const contadorMuertos = 0;
   for (let x = 0; x < boardGame.length; x++) {
     for (let y = 0; y < boardGame[x].length; y++) {
       if (boardGame[0][0] === 1) {
@@ -64,9 +131,13 @@ function chequeandoVecinos(matriz) {
       centro();
     }
   }
+  console.log;
 }
 
 function centro() {
+  let contadorVivos = 0;
+  let contadorMuertos = 0;
+
   if (boardGame[x - 1][y - 1] === 1) {
     contadorVivos++;
   }
@@ -133,6 +204,9 @@ function centro() {
 }
 
 function esquinaIzquierdaSuperior() {
+  let contadorVivos = 0;
+  let contadorMuertos = 0;
+
   if (boardGame[x][y + 1] === 1) {
     contadorVivos++;
   }
@@ -155,9 +229,14 @@ function esquinaIzquierdaSuperior() {
   if (boardGame[x + 1][y] === 0) {
     contadorMuertos++;
   }
+
+  
 }
 
 function esquinaIzquierdaInferior() {
+  let contadorVivos = 0;
+  let contadorMuertos = 0;
+
   if (boardGame[x - 1][y] === 1) {
     contadorVivos++;
   }
@@ -183,6 +262,9 @@ function esquinaIzquierdaInferior() {
 }
 
 function esquinaDerechaSuperior() {
+  let contadorVivos = 0;
+  let contadorMuertos = 0;
+
   if (boardGame[x][y - 1] === 1) {
     contadorVivos++;
   }
@@ -209,6 +291,9 @@ function esquinaDerechaSuperior() {
 }
 
 function esquinaDerechaInferior() {
+  let contadorVivos = 0;
+  let contadorMuertos = 0;
+
   if (boardGame[x - 1][y] === 1) {
     contadorVivos++;
   }
@@ -235,6 +320,9 @@ function esquinaDerechaInferior() {
 }
 
 function bordeSuperior() {
+  let contadorVivos = 0;
+  let contadorMuertos = 0;
+
   if (boardGame[x][y - 1] === 1) {
     contadorVivos++;
   }
@@ -277,6 +365,9 @@ function bordeSuperior() {
 }
 
 function bordeDerecho() {
+  let contadorVivos = 0;
+  let contadorMuertos = 0;
+
   if (boardGame[x - 1][y] === 1) {
     contadorVivos++;
   }
@@ -319,6 +410,9 @@ function bordeDerecho() {
 }
 
 function bordeInferior() {
+  let contadorVivos = 0;
+  let contadorMuertos = 0;
+
   if (boardGame[x][y - 1] === 1) {
     contadorVivos++;
   }
@@ -360,6 +454,9 @@ function bordeInferior() {
 }
 
 function bordeIzquierdo() {
+  let contadorVivos = 0;
+  let contadorMuertos = 0;
+
   if (boardGame[x - 1][y] === 1) {
     contadorVivos++;
   }
@@ -400,28 +497,4 @@ function bordeIzquierdo() {
     contadorMuertos++;
   }
 }
-
-/* if (boardGame[x - 1][y - 1] === 1) {
-          contadorVivos++;
-        }
-        if (boardGame[x - 1][y] === 1) {
-          contadorVivos++;
-        }
-        if (boardGame[x - 1][y + 1] === 1) {
-          contadorVivos++;
-        }
-        if (boardGame[x][y - 1] === 1) {
-          contadorVivos++;
-        }
-        if (boardGame[x][y + 1] === 1) {
-          contadorVivos++;
-        }
-        if (boardGame[x + 1][y - 1] === 1) {
-          contadorVivos++;
-        }
-        if (boardGame[x + 1][y] === 1) {
-          contadorVivos++;
-        }
-        if (boardGame[x + 1][y + 1] === 1) {
-          contadorVivos++;
-        } */
+*/
