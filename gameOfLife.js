@@ -60,7 +60,75 @@ function chequeandoVecinos(matriz) {
       ) {
         bordeIzquierdo();
       }
+
+      centro();
     }
+  }
+}
+
+function centro() {
+  if (boardGame[x - 1][y - 1] === 1) {
+    contadorVivos++;
+  }
+
+  if (boardGame[x - 1][y] === 1) {
+    contadorVivos++;
+  }
+
+  if (boardGame[x - 1][y + 1] === 1) {
+    contadorVivos++;
+  }
+
+  if (boardGame[x][y + 1] === 1) {
+    contadorVivos++;
+  }
+
+  if (boardGame[x + 1][y + 1] === 1) {
+    contadorVivos++;
+  }
+
+  if (boardGame[x + 1][y] === 1) {
+    contadorVivos++;
+  }
+
+  if (boardGame[x + 1][y - 1] === 1) {
+    contadorVivos++;
+  }
+
+  if (boardGame[x][y - 1] === 1) {
+    contadorVivos++;
+  }
+
+  if (boardGame[x - 1][y - 1] === 0) {
+    contadorMuertos++;
+  }
+
+  if (boardGame[x - 1][y] === 0) {
+    contadorMuertos++;
+  }
+
+  if (boardGame[x - 1][y + 1] === 0) {
+    contadorMuertos++;
+  }
+
+  if (boardGame[x][y + 1] === 0) {
+    contadorMuertos++;
+  }
+
+  if (boardGame[x + 1][y + 1] === 0) {
+    contadorMuertos++;
+  }
+
+  if (boardGame[x + 1][y] === 0) {
+    contadorMuertos++;
+  }
+
+  if (boardGame[x + 1][y - 1] === 0) {
+    contadorMuertos++;
+  }
+
+  if (boardGame[x][y - 1] === 0) {
+    contadorMuertos++;
   }
 }
 
@@ -126,6 +194,7 @@ function esquinaDerechaSuperior() {
   if (boardGame[x + 1][y] === 1) {
     contadorVivos++;
   }
+
   if (boardGame[x][y - 1] === 0) {
     contadorMuertos++;
   }
