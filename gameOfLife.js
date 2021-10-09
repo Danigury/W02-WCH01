@@ -2,11 +2,17 @@ const dimensionesTablero = 5;
 const tableroOriginal = Array(dimensionesTablero)
   .fill(0)
   .map(() => Array(dimensionesTablero).fill(0));
-
-function juego(tablero) {
+tableroOriginal[1][2] = 1;
+tableroOriginal[2][2] = 1;
+tableroOriginal[3][2] = 1;
+function juego(tablero, count) {
   const creadorTablero = Array(dimensionesTablero)
     .fill(0)
     .map(() => Array(dimensionesTablero).fill(0));
+
+  if (count === 0) {
+    return;
+  }
 
   for (let x = 0; x < tablero.length; x++) {
     for (let y = 0; y < tablero[x].length; y++) {
@@ -27,7 +33,8 @@ function juego(tablero) {
       creadorTablero[x][y] = creandoTablero(tablero[x][y], contador);
     }
   }
-  juego(creadorTablero);
+  console.log(creadorTablero);
+  juego(creadorTablero, count - 1);
 }
 function creandoTablero(vivos, vecinos) {
   if (vivos === 1) {
@@ -49,4 +56,4 @@ function creandoTablero(vivos, vecinos) {
   return 0;
 }
 
-console.log(juego(tableroOriginal));
+juego(tableroOriginal, 5);
