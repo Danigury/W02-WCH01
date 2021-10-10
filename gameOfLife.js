@@ -61,3 +61,27 @@ function creandoTablero(vivos, vecinos) {
 juego(tableroOriginal, 5);
 
 module.exports = { juego, creandoTablero };
+
+function creadorTableroHtml() {
+  const tableroHtml = document.querySelector(".boardGame__board");
+
+  const tabla = document.createElement("table");
+  const tblBody = document.createElement("tbody");
+
+  for (let i = 0; i < 10; i++) {
+    const hilera = document.createElement("tr");
+
+    for (let j = 0; j < 10; j++) {
+      const celda = document.createElement("td");
+      const textoCelda = document.createTextNode("hola");
+
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+    }
+    tblBody.appendChild(hilera);
+  }
+
+  tabla.appendChild(tblBody);
+  body.appendChild(tabla);
+  tabla.setAttribute("border", "2");
+}
