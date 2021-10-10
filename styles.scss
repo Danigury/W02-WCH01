@@ -72,15 +72,14 @@ body {
       }
     }
 
-    td {
+    .celda {
       width: 25px;
       height: 25px;
+      border-radius: 5px;
       background-color: #ccc9bef5;
-      border: black;
-
-      &:hover {
-        background-color: darkgoldenrod;
-      }
+    }
+    .celda:hover {
+      background: darkgoldenrod;
     }
   }
 
@@ -98,6 +97,19 @@ body {
       font-size: 18px;
       height: 15px;
       color: black;
+    }
+  }
+  .jugar__boton-jugar {
+    font-size: 25px;
+    height: 50px;
+    width: 100px;
+    background-color: #fdfeee;
+    padding: 5px;
+    border-radius: 15px;
+    border: none;
+    visibility: visible;
+    &:hover {
+      background-color: darkgoldenrod;
     }
   }
 }
