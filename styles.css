@@ -24,6 +24,11 @@ body a .totoro-img {
   height: 200px;
   width: 200px;
 }
+body a .totoro-img:hover {
+  background-image: url("./media/drop.svg");
+  background-size: 7%;
+  border-radius: 50%;
+}
 body .header__title {
   font-size: 80px;
   font-weight: lighter;
