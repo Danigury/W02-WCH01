@@ -73,10 +73,10 @@ function creadorTableroHtml() {
   const tabla = document.createElement("table");
   const tblBody = document.createElement("tbody");
 
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 20; i++) {
     const hilera = document.createElement("tr");
 
-    for (let j = 0; j < 30; j++) {
+    for (let j = 0; j < 20; j++) {
       const celda = document.createElement("td");
       const textoCelda = document.createTextNode("");
 
