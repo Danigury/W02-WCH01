@@ -1,18 +1,18 @@
 const botonGenerarTablero = document.querySelector(".boton");
+const botonJugar = document.querySelector("jugar__boton-jugar");
 botonGenerarTablero.addEventListener("click", function () {
   this.style.visibility = "hidden";
 });
-const casilla = document.querySelector("td");
 
 const dimensionesTablero = 20;
-const tableroOriginal = Array(dimensionesTablero)
+let tableroOriginal = Array(dimensionesTablero)
   .fill(0)
   .map(() => Array(dimensionesTablero).fill(0));
-tableroOriginal[1][2] = 1;
+/* tableroOriginal[1][2] = 1;
 tableroOriginal[2][2] = 1;
-tableroOriginal[3][2] = 1;
+tableroOriginal[3][2] = 1; */
 
-function juego(tablero, count) {
+function juego(tablero) {
   const tableroNuevo = Array(dimensionesTablero)
     .fill(0)
     .map(() => Array(dimensionesTablero).fill(0));
@@ -40,10 +40,10 @@ function juego(tablero, count) {
       tableroNuevo[x][y] = creandoTablero(tablero[x][y], contador);
 
       if (tableroNuevo[x][y] === 0) {
-        document.querySelector("td").style.background = "#ccc9bef5";
+        document.querySelector(`${x}-${y}`).style.background = "#ccc9bef5";
       }
       if (tableroNuevo[x][y] === 1) {
-        document.querySelector("td").style.background = "darkgoldenrod";
+        document.querySelector(`${x}-${y}`).style.background = "darkgoldenrod";
       }
     }
   }
@@ -92,10 +92,10 @@ function creadorTableroHtml() {
       const textoCelda = document.createTextNode("");
       hilera.appendChild(celda);
       celda.appendChild(textoCelda);
-      celda.className = "board__celda";
+      celda.className = "celda";
       celda.style.background = "#fdfeee";
       celda.id = `${x}-${y}`;
-      celda.onclick = cambiandoColorCelda();
+      celda.onclick = cambiandoColorCelda;
     }
   }
 
@@ -103,3 +103,26 @@ function creadorTableroHtml() {
   tableroHtml.appendChild(tabla);
   tabla.setAttribute("border", "2");
 }
+
+function jugando() {
+  setInterval(() => {
+    tableroOriginal = juego(tableroOriginal, 20);
+  }, 2000);
+}
+
+botonJugar.onclick = () => {
+  jugando();
+};
+
+function cambiandoColorCelda() {
+  const posicion = this.id.split("-");
+  tableroOriginal[posicion[0]][posicion[1]] = 1;
+  if (this.style.background === "#fdfeee") {
+    this.style.background = "red";
+  } else {
+    this.style.background = "#fdfeee";
+  }
+}
+
+creadorTableroHtml();
+juego(tableroOriginal, 20);
