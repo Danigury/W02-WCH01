@@ -1,3 +1,44 @@
+* {
+  box-sizing: border-box;
+  font-family: "Abril Fatface", cursive;
+  margin: 0;
+  padding: 0;
+}
 
+body {
+  background-image: url(./media/mi-vecino-totoro_2560x1600_xtrafondos.com.jpg);
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body .header__title {
+  font-size: 50px;
+  font-weight: lighter;
+  color: #fdf7df;
+  text-shadow: 2px 2px 4px #706e6e;
+}
+body .boardGame {
+  width: 100vw;
+  height: 810px;
+}
+body .copyright {
+  background-color: #fdf7df;
+  height: 60px;
+  width: 100vw;
+  opacity: 0.07;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .copyright .copyright__title {
+  opacity: 1;
+  font-size: 18px;
+  height: 15px;
+  color: black;
+}
 
 /*# sourceMappingURL=styles.css.map */
