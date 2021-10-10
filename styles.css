@@ -47,9 +47,13 @@ body .boardGame {
   border: none;
 }
 body .boardGame table {
-  width: 40vw;
-  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
+}
+body .boardGame table tbody {
+  overflow: hidden;
 }
 body .boardGame .boton {
   font-size: 25px;
@@ -65,11 +69,10 @@ body .boardGame .boton:hover {
   background-color: darkgoldenrod;
 }
 body .boardGame td {
-  width: 5px;
-  height: 15px;
+  width: 25px;
+  height: 25px;
   background-color: #ccc9bef5;
   border: black;
-  border-radius: 5px;
 }
 body .boardGame td:hover {
   background-color: darkgoldenrod;
