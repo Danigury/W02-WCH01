@@ -77,6 +77,9 @@ body .boardGame td {
 body .boardGame td:hover {
   background-color: darkgoldenrod;
 }
+body .boardGame td.selected {
+  background-color: darkgoldenrod;
+}
 body .copyright {
   background-color: #fdf7df;
   height: 60px;
