@@ -68,12 +68,12 @@ function creadorTableroHtml() {
   const tabla = document.createElement("table");
   const tblBody = document.createElement("tbody");
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 35; i++) {
     const hilera = document.createElement("tr");
 
-    for (let j = 0; j < 10; j++) {
+    for (let j = 0; j < 35; j++) {
       const celda = document.createElement("td");
-      const textoCelda = document.createTextNode("hola");
+      const textoCelda = document.createTextNode("");
 
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
@@ -82,6 +82,6 @@ function creadorTableroHtml() {
   }
 
   tabla.appendChild(tblBody);
-  body.appendChild(tabla);
+  tableroHtml.appendChild(tabla);
   tabla.setAttribute("border", "2");
 }
