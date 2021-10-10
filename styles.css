@@ -62,7 +62,7 @@ body .boardGame .boton:hover {
   background-color: darkgoldenrod;
 }
 body .boardGame td {
-  width: 15px;
+  width: 5px;
   height: 15px;
   background-color: #ccc9bef5;
   border: black;
