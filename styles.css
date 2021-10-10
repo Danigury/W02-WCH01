@@ -12,18 +12,59 @@ body {
   background-size: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
+body a {
+  position: absolute;
+  align-self: flex-end;
+}
+body a .totoro-img {
+  margin-top: 720px;
+  height: 200px;
+  width: 200px;
+}
 body .header__title {
-  font-size: 50px;
+  font-size: 80px;
   font-weight: lighter;
   color: #fdf7df;
   text-shadow: 2px 2px 4px #706e6e;
 }
+body .header__title:hover {
+  color: darkgoldenrod;
+}
 body .boardGame {
-  width: 100vw;
-  height: 810px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: none;
+}
+body .boardGame table {
+  width: 50vw;
+  height: 200px;
+  border: none;
+}
+body .boardGame .boton {
+  font-size: 25px;
+  height: 50px;
+  width: 270px;
+  background-color: #fdfeee;
+  padding: 5px;
+  border-radius: 15px;
+}
+body .boardGame .boton:hover {
+  background-color: darkgoldenrod;
+}
+body .boardGame td {
+  width: 15px;
+  height: 15px;
+  background-color: #ccc9bef5;
+  border: black;
+  border-radius: 5px;
+}
+body .boardGame td:hover {
+  background-color: darkgoldenrod;
 }
 body .copyright {
   background-color: #fdf7df;
