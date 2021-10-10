@@ -31,7 +31,7 @@ body a .totoro-img:hover {
   border-radius: 50%;
 }
 body .header__title {
-  font-size: 80px;
+  font-size: 60px;
   font-weight: lighter;
   color: #fdf7df;
   text-shadow: 2px 2px 4px #706e6e;
@@ -58,6 +58,8 @@ body .boardGame .boton {
   background-color: #fdfeee;
   padding: 5px;
   border-radius: 15px;
+  border: none;
+  visibility: visible;
 }
 body .boardGame .boton:hover {
   background-color: darkgoldenrod;
