@@ -66,11 +66,12 @@ body {
     }
 
     td {
-      width: 15px;
+      width: 5px;
       height: 15px;
       background-color: #ccc9bef5;
       border: black;
       border-radius: 5px;
+
       &:hover {
         background-color: darkgoldenrod;
       }
