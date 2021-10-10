@@ -52,24 +52,14 @@ function juego(tablero) {
   return tableroNuevo;
 }
 
-function creandoTablero(vivos, vecinos) {
-  if (vivos === 1) {
-    if (vecinos < 2) {
-      return 0;
-    }
-    if (vecinos > 3) {
-      return 0;
-    }
-    if (vecinos === 2 || vecinos === 3) {
-      return 1;
-    }
+function cambiandoColorCelda() {
+  const posicion = this.id.split("-");
+  tableroOriginal[posicion[0]][posicion[1]] = 1;
+  if (this.style.background === "#fdfeee") {
+    this.style.background = "red";
+  } else {
+    this.style.background = "#fdfeee";
   }
-  if (vivos === 0) {
-    if (vecinos === 3) {
-      return 1;
-    }
-  }
-  return 0;
 }
 
 juego(tableroOriginal, 5);
@@ -104,6 +94,26 @@ function creadorTableroHtml() {
   tabla.setAttribute("border", "2");
 }
 
+function creandoTablero(vivos, vecinos) {
+  if (vivos === 1) {
+    if (vecinos < 2) {
+      return 0;
+    }
+    if (vecinos > 3) {
+      return 0;
+    }
+    if (vecinos === 2 || vecinos === 3) {
+      return 1;
+    }
+  }
+  if (vivos === 0) {
+    if (vecinos === 3) {
+      return 1;
+    }
+  }
+  return 0;
+}
+
 function jugando() {
   setInterval(() => {
     tableroOriginal = juego(tableroOriginal, 20);
@@ -113,16 +123,6 @@ function jugando() {
 botonJugar.onclick = () => {
   jugando();
 };
-
-function cambiandoColorCelda() {
-  const posicion = this.id.split("-");
-  tableroOriginal[posicion[0]][posicion[1]] = 1;
-  if (this.style.background === "#fdfeee") {
-    this.style.background = "red";
-  } else {
-    this.style.background = "#fdfeee";
-  }
-}
 
 creadorTableroHtml();
 juego(tableroOriginal, 20);
