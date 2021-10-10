@@ -32,7 +32,7 @@ body {
   }
 
   .header__title {
-    font-size: 80px;
+    font-size: 60px;
     font-weight: lighter;
     color: #fdf7df;
     text-shadow: 2px 2px 4px rgb(112, 110, 110);
@@ -61,6 +61,8 @@ body {
       background-color: #fdfeee;
       padding: 5px;
       border-radius: 15px;
+      border: none;
+      visibility: visible;
       &:hover {
         background-color: darkgoldenrod;
       }

@@ -1,3 +1,8 @@
+const botonGenerarTablero = document.querySelector(".boton");
+botonGenerarTablero.addEventListener("click", function () {
+  this.style.visibility = "hidden";
+});
+
 const dimensionesTablero = 5;
 const tableroOriginal = Array(dimensionesTablero)
   .fill(0)
